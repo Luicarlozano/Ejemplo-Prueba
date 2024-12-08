@@ -1,0 +1,42 @@
+<h1 class="text-2xl text-blue-600 p-2">
+  Directorio de Departamentos y Empleados
+</h1>
+
+<h2 class="text-xl text-blue-500 p-2">
+  Crear nuevos elementos a los Directorios
+</h2>
+
+<button
+  class="bg-blue-400 p-1 mx-1 rounded-lg drop-shadow"
+  (click)="openModal('department')"
+>
+  Crear departamento
+</button>
+
+<button
+  class="bg-cyan-400 p-1 mx-1 rounded-lg drop-shadow"
+  (click)="openModal('employee')"
+>
+  Crear Empleado
+</button>
+
+<div class="flex flex-col p-2 gap-y-1">
+  <label class="text-xl text-blue-500 p-2">Listado de: </label>
+  <select
+    id="Select-view"
+    [(ngModel)]="view"
+    class="drop-shadow border-2 bg-gray-100 max-w-xl"
+  >
+    <option value="department">Departamentos</option>
+    <option value="employee">Empleados</option>
+  </select>
+</div>
+
+@if (view === 'department') {
+<app-list-department></app-list-department>
+}@else if (view === 'employee') {
+<app-list-employee></app-list-employee>
+}
+
+<app-modal *ngIf="modalIsOpen" [mode]="modalMode" (close)="closeModal()">
+</app-modal>

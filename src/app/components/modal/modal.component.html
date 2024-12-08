@@ -1,0 +1,105 @@
+<div
+  class="fixed inset-0 bg-gray-800 bg-opacity-75 flex items-center justify-center z-50"
+>
+  <div class="bg-white rounder-lg w-96 p-6">
+    @if(mode === 'department'){
+    <h2 class="text-blue-500 font-bold">Crear Departamento</h2>
+
+    <form [formGroup]="departmentForm">
+      <div class="flex flex-col p-2">
+        <label for="code">Codigo:</label>
+        <input
+          type="number"
+          id="code"
+          name="code"
+          required
+          formControlName="code"
+          class="drop-shadow border-2"
+        />
+      </div>
+      <div class="flex flex-col p-2">
+        <label for="name">Nombre:</label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          required
+          formControlName="name"
+          class="drop-shadow border-2"
+        />
+      </div>
+    </form>
+    } @else if(mode === 'employee'){
+      <h2 class="text-blue-500 font-bold">Crear Empleado</h2>
+
+      <form [formGroup]="employeeForm">
+        <div class="flex flex-col p-2">
+          <label for="code">Codigo:</label>
+          <input
+            type="number"
+            id="code"
+            name="code"
+            required
+            formControlName="code"
+            class="drop-shadow border-2"
+          />
+        </div>
+        <div class="flex flex-col p-2">
+          <label for="name">Nombre:</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            formControlName="name"
+            class="drop-shadow border-2"
+          />
+        </div>
+        <div class="flex flex-col p-2">
+          <label for="lastname1">Primer Apellido:</label>
+          <input
+            type="text"
+            id="lastname1"
+            name="lastname1"
+            required
+            formControlName="lastname1"
+            class="drop-shadow border-2"
+          />
+        </div>
+        <div class="flex flex-col p-2">
+          <label for="lastname2">Segundo Apellido:</label>
+          <input
+            type="text"
+            id="lastname2"
+            name="lastname2"
+            required
+            formControlName="lastname2"
+            class="drop-shadow border-2"
+          />
+        </div>
+        <div class="flex flex-col p-2">
+          <label for="departamentCode">Codigo Departamento:</label>
+          <select name="departamentCode" id="departamentCode" formControlName="departamentCode">
+            @for(department of departments;track department.code){
+              <option value="{{department._id}}">{{department.code}}</option>
+            }
+          </select>
+        </div>
+      </form>
+    }
+
+    <button
+      type="submit"
+      class="mt-4 px-4 py-2 bg-blue-300 text-gray-700 rounded hover:bg-gray-400 mx-4"
+      (click)="onSubmit()"
+    >
+      Crear
+    </button>
+    <button
+      class="mt-4 px-4 py-2 bg-gray-300 text-gray-700 rounded hover:bg-gray-400"
+      (click)="close.emit()"
+    >
+      Cancelar
+    </button>
+  </div>
+</div>
